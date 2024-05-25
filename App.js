@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import GradesScreen from './screens/GradesScreen';
+import NavBar from './navigation/NavBar';
+import Grades from './screens/GradesScreen';
+import Tests from './screens/TestsScreen';
+import TimeTable from './screens/TimeTableScreen';
+import SettingsScreen from './screens/SettingsScreen';
+const Tab = createBottomTabNavigator();
 
-export default function App() {
+
+
+function TabNavigator() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Tab.Navigator 
+     screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="TimeTable" component={TimeTable} 
+       options={{ tabBarStyle: { display: "none" },}}/>
+      <Tab.Screen name="Grades" component={Grades} 
+      options={{ tabBarStyle: { display: "none" },}}/>
+      <Tab.Screen name="Tests" component={Tests} 
+       options={{ tabBarStyle: { display: "none" },}}/>
+      <Tab.Screen name="Settings" component={SettingsScreen} 
+       options={{ tabBarStyle: { display: "none" },}}/>
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  return (
+    <>
+
+      <NavigationContainer>
+        {/*wenn der TabNavigator enttfernt wird, dann sieht man das SettingsSymbol*/}
+        <TabNavigator />
+      </NavigationContainer>
+    </>
+  );
+}
