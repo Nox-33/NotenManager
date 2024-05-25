@@ -7,6 +7,7 @@ export default function SettingsScreen() {
     <View className="flex-1 items-center justify-center bg-neutral-900">
       <SettingsSymbol/>
       <Text className="text-center">SettingsScreen</Text>
+      
       <NavBar/>
     </View>
   )
